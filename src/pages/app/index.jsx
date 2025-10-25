@@ -15,7 +15,6 @@ function App() {
     console.log(id);
     navigate(`/product/${id}`);
   };
-  console.log(data, theme);
 
   if (isLoading) {
     return (

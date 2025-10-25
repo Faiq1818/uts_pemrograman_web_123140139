@@ -12,7 +12,6 @@ export default function ProductDetail() {
   const { data, isLoading } = useFetch(
     `https://dummyjson.com/recipes/${params.id}`,
   );
-  console.log(data, isLoading);
 
   if (isLoading) {
     return (
