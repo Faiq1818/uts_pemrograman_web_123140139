@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
 import { FadeLoader } from "react-spinners";
+
 import Navbar from "../components/navbar.jsx";
+import Footer from "../components/footer.jsx";
 import useFetch from "../hooks/useFetch.jsx";
 
 export default function ProductDetail() {
@@ -29,7 +31,7 @@ export default function ProductDetail() {
           <div className=" items-center">
             <div className="flex justify-between">
               <h1 className="text-3xl font-semibold mb-2">{data.name}</h1>
-              <p className="text-gray-600 mb-4">{data.cuisine}</p>
+              <p className="font-semibold text-gray-600 mb-4">{data.cuisine}</p>
             </div>
             <div className=" flex items-center gap-1">
               <h2 className="font-semibold text-lg">Difficulty:</h2>
@@ -67,6 +69,7 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
+        <Footer />
       </>
     );
   }
