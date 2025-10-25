@@ -1,16 +1,19 @@
 import { NavLink } from "react-router";
+import { useSelector } from "react-redux";
 
 import Navbar from "../../components/navbar.jsx";
 import Footer from "../../components/footer.jsx";
 
 export default function About() {
+  const theme = useSelector((state) => state.theme.mode);
+
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-12">
-        <div className="max-w-3xl bg-white rounded-2xl p-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">About Us</h1>
-          <p className="text-gray-600 mb-6">
+      <div className={`min-h-screen flex flex-col items-center justify-center px-6 py-12 ${theme === "dark" ? "" : ""}`}>
+        <div className={`max-w-3xl rounded-2xl p-8 text-center ${theme === "dark" ? "bg-[#1e1e2e]" : "bg-white "}`}>
+          <h1 className={`text-4xl font-bold mb-4 ${theme === "dark" ? "text-gray-300" : "text-gray-800  "}`}>About Us</h1>
+          <p className="mb-6">
             Selamat datang di{" "}
             <span className="font-semibold text-[#7287fd]">
               List of Recipes
@@ -21,7 +24,7 @@ export default function About() {
             kebersamaan.
           </p>
 
-          <p className="text-gray-600 mb-6">
+          <p className="mb-6">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
             fringilla dictum tellus, vel commodo mauris gravida ac. Maecenas
             suscipit, sem nec interdum pulvinar, elit dui ornare nunc, et
@@ -35,7 +38,7 @@ export default function About() {
             sagittis in accumsan eget, lacinia nec eros
           </p>
 
-          <p className="text-gray-600">
+          <p>
             Terima kasih telah berkunjung! Kami harap Anda menemukan inspirasi
             baru untuk hidangan berikutnya
           </p>
