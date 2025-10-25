@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function useFetch() {
-  const [data, setData] = useState("");
+function useFetch(url) {
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function getRecipes() {
+    let isMounted = true;
+
+    async function fetchData() {
       try {
-        const res = await axios.get("https://dummyjson.com/recipes");
-        setData(res);
-        setIsLoading(false);
-        console.log(res.data);
+        const res = await axios.get(url);
+        if (isMounted) {
+          setData(res.data);
+          setIsLoading(false);
+        }
       } catch (err) {
-        setError(err)
-        console.error("Error fetching data:", err);
+        if (isMounted) {
+          setError(err);
+          setIsLoading(false);
+        }
       }
     }
 
-    getRecipes();
-  }, []);
+    fetchData();
+
+    return () => {
+      isMounted = false; // cleanup
+    };
+  }, [url]);
 
   return { data, isLoading, error };
 }
