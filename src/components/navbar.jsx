@@ -1,9 +1,15 @@
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../store/themeSlice.js";
+import { useNavigate } from "react-router";
 import { MdOutlineLightMode } from "react-icons/md";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleClickAbout = () => {
+    navigate(`/about`);
+  };
 
   return (
     <>
@@ -11,8 +17,16 @@ export default function Navbar() {
         <div className="flex justify-between mx-5">
           <p className="text-[#7287fd] font-bold">~List of Recipes</p>
           <div className="flex items-center gap-5">
-            <MdOutlineLightMode onClick={() => dispatch(toggleTheme())} />
-            <p>by Faiq Ghozy Erlangga</p>
+            <p
+              className="hover:text-gray-500 cursor-pointer"
+              onClick={() => handleClickAbout()}
+            >
+              about
+            </p>
+            <MdOutlineLightMode
+              className="hover:text-gray-500 cursor-pointer"
+              onClick={() => dispatch(toggleTheme())}
+            />
           </div>
         </div>
       </nav>

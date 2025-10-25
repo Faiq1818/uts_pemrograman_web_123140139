@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
 import { FadeLoader } from "react-spinners";
 
-import Navbar from "../components/navbar.jsx";
-import Footer from "../components/footer.jsx";
-import useFetch from "../hooks/useFetch.jsx";
+import Navbar from "../../components/navbar.jsx";
+import Footer from "../../components/footer.jsx";
+import useFetch from "../../hooks/useFetch.jsx";
 
 function App() {
   const { data, isLoading } = useFetch("https://dummyjson.com/recipes");
@@ -19,7 +19,6 @@ function App() {
     return (
       <>
         <Navbar />
-
         <div className="fixed inset-0 flex justify-center items-center">
           <FadeLoader color="#7287fd" />
         </div>

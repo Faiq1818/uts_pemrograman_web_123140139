@@ -1,9 +1,9 @@
 import { useParams } from "react-router";
 import { FadeLoader } from "react-spinners";
 
-import Navbar from "../components/navbar.jsx";
-import Footer from "../components/footer.jsx";
-import useFetch from "../hooks/useFetch.jsx";
+import Navbar from "../../components/navbar.jsx";
+import Footer from "../../components/footer.jsx";
+import useFetch from "../../hooks/useFetch.jsx";
 
 export default function ProductDetail() {
   const params = useParams();
