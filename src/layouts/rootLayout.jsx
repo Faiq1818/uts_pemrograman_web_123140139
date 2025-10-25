@@ -13,10 +13,10 @@ export default function RootLayout() {
     }
   }, [theme]);
 
-useEffect(() => {
-  console.log("Theme:", theme);
-  console.log("HTML class:", document.documentElement.className);
-}, [theme]);
+  useEffect(() => {
+    console.log("Theme:", theme);
+    console.log("HTML class:", document.documentElement.className);
+  }, [theme]);
 
   console.log(theme);
 

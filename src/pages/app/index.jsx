@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router";
 import { FadeLoader } from "react-spinners";
+import { useSelector } from "react-redux";
 
 import Navbar from "../../components/navbar.jsx";
 import Footer from "../../components/footer.jsx";
 import useFetch from "../../hooks/useFetch.jsx";
 
 function App() {
+  const theme = useSelector((state) => state.theme.mode);
   const { data, isLoading } = useFetch("https://dummyjson.com/recipes");
   const navigate = useNavigate();
 
@@ -13,13 +15,15 @@ function App() {
     console.log(id);
     navigate(`/product/${id}`);
   };
-  console.log(data);
+  console.log(data, theme);
 
   if (isLoading) {
     return (
       <>
         <Navbar />
-        <div className="fixed inset-0 flex justify-center items-center">
+        <div
+          className={`fixed inset-0 flex justify-center items-center ${theme === "dark" ? "bg-[#181825]" : "bg-[#eff1f5]"}`}
+        >
           <FadeLoader color="#7287fd" />
         </div>
       </>
@@ -32,7 +36,9 @@ function App() {
           {data.recipes.map((recipe) => (
             <div
               key={recipe.id}
-              className="p-4 m-3 bg-white rounded-2xl flex flex-col items-center text-center hover:scale-105 transition duration-100 cursor-pointer"
+              className={`p-4 m-3 rounded-2xl flex flex-col items-center text-center hover:scale-105 transition duration-100 cursor-pointer ${
+                theme === "dark" ? "bg-[#313244]" : "bg-white"
+              }`}
               onClick={() => handleClick(recipe.id)}
             >
               <div className="p-6 text-center items-center flex flex-col">
@@ -41,11 +47,25 @@ function App() {
                   alt={recipe.name}
                   className="w-52 h-52 object-cover rounded-xl mb-3"
                 />
-                <h2 className="text-lg font-semibold text-gray-800">
+                <h2
+                  className={`text-lg font-semibold  ${
+                    theme === "dark" ? "text-gray-200" : "text-gray-800"
+                  }`}
+                >
                   {recipe.name}
                 </h2>
-                <p className="text-sm text-gray-600">{recipe.cuisine}</p>
-                <p className="text-sm text-gray-500 mt-1">
+                <p
+                  className={`text-sm ${
+                    theme === "dark" ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  {recipe.cuisine}
+                </p>
+                <p
+                  className={`text-sm mt-1 ${
+                    theme === "dark" ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
                   Difficulty: {recipe.difficulty}
                 </p>
               </div>

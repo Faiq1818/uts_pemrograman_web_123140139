@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { store } from "./store/store.js";
 
 import "./index.css";
@@ -15,6 +15,22 @@ const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
   <Provider store={store}>
     <BrowserRouter>
+      <Main />
+    </BrowserRouter>
+  </Provider>,
+);
+
+function Main() {
+  const theme = useSelector((state) => state.theme.mode);
+
+  return (
+    <div
+      className={`${
+        theme === "dark"
+          ? "bg-[#181825] text-[#cdd6f4]"
+          : "text-[#4c4f69] bg-[#eff1f5]"
+      }`}
+    >
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/about" element={<About />} />
@@ -22,6 +38,6 @@ ReactDOM.createRoot(root).render(
         {/* Catch-all route for 404 */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </BrowserRouter>
-  </Provider>,
-);
+    </div>
+  );
+}
