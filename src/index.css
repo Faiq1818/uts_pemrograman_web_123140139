@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-body.light {
+body {
   @apply bg-[#eff1f5] text-[#4c4f69];
-}
-
-body.dark {
-  @apply bg-[#1e1e2e] text-[#eff1f5];
 }

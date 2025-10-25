@@ -13,6 +13,7 @@ function App() {
     console.log(id);
     navigate(`/product/${id}`);
   };
+  console.log(data);
 
   if (isLoading) {
     return (

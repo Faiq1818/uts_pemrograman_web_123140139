@@ -1,8 +1,7 @@
 import ReactDOM from "react-dom/client";
-import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { store } from "./store/store.js";
 
 import "./index.css";
@@ -15,25 +14,12 @@ const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
   <Provider store={store}>
     <BrowserRouter>
-      <Main />
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        {/* Catch-all route for 404 */}
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </BrowserRouter>
   </Provider>,
 );
-
-function Main() {
-  const theme = useSelector((state) => state.theme.mode);
-
-  useEffect(() => {
-    document.body.classList.remove("light", "dark");
-    document.body.classList.add(theme);
-  }, [theme]);
-
-  return (
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/product/:id" element={<ProductDetail />} />
-      {/* Catch-all route for 404 */}
-      <Route path="*" element={<PageNotFound />} />
-    </Routes>
-  );
-}
