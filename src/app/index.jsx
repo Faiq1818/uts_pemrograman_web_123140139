@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router";
 import { FadeLoader } from "react-spinners";
+import { useSelector } from "react-redux";
 
 import Navbar from "../components/navbar.jsx";
 import Footer from "../components/footer.jsx";
 import useFetch from "../hooks/useFetch.jsx";
 
 function App() {
+  const theme = useSelector((state) => state.theme.mode);
   const { data, isLoading } = useFetch("https://dummyjson.com/recipes");
   const navigate = useNavigate();
 
