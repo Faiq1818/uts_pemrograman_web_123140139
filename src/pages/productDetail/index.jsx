@@ -55,7 +55,7 @@ export default function ProductDetail() {
             />
 
             <div>
-              <div className="mb-4">
+              <div className="my-4">
                 <h2 className="font-semibold text-lg mb-1">Ingredients:</h2>
                 <ul
                   className={`list-disc list-inside space-y-1 ${theme === "dark" ? "text-gray-300" : "text-gray-700 "}`}
